@@ -1,0 +1,25 @@
+# Ignore Python virtual environments
+venv/
+.venv/
+__pycache__/
+
+# Ignore raw and processed data
+data/
+*.json
+*.csv
+*.parquet
+
+# Ignore notebooks and logs
+*.ipynb
+*.log
+
+# Ignore hidden files and build output
+.git/
+.env
+*.pyc
+__pycache__/
+*.pkl
+
+# Ignore model weights (YOLO or others)
+*.pt
+*.h5

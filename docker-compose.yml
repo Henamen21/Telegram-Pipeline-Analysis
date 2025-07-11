@@ -1,0 +1,27 @@
+services:
+  app:
+    build: .
+    container_name: telegram_data_pipeline_app
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"  # FastAPI or other ports you expose
+
+  db:
+    image: postgres:15
+    container_name: telegram_postgres
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: telegram_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

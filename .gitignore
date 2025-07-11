@@ -1,2 +1,7 @@
 /telegram_venv
 .env
+/data
+*.log
+*.session
+__pycache__/
+db.cpython*

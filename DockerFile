@@ -1,0 +1,15 @@
+# Use Python 3.10 as base image
+FROM python:3.10
+
+# Set working directory in the container
+WORKDIR /app
+
+# Copy requirements and install packages
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy all project files into the container
+COPY . .
+
+# Default command to run when container starts
+CMD ["bash", "scripts/run_pipeline.sh"]

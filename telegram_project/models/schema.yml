@@ -1,0 +1,46 @@
+models:
+  - name: fct_messages
+    description: "Fact table combining message data with channel and date information."
+    columns:
+      - name: message_id
+        description: "Unique identifier for each Telegram message"
+        tests: [not_null, unique]
+      - name: channel_name
+        description: "Name of the Telegram channel"
+      - name: date
+        description: "Date the message was posted"
+        tests: [not_null]
+      - name: message_length
+        description: "Length of the message text (in characters)"
+      - name: has_media
+        description: "Boolean indicating if the message contains media"
+
+  - name: dim_channels          # or dim_channels if plural
+    description: "Dimension table for Telegram channels"
+    columns:
+      - name: channel_id
+        description: "Hashed unique identifier for each channel"
+        tests:
+          - not_null
+          - unique
+      - name: channel_name
+        description: "Name of the Telegram channel"
+    
+sources:
+  - name: raw                # source schema or database name
+    tables:
+      - name: telegram_messages
+        description: "Raw Telegram messages data"
+        columns:
+          - name: message_id
+            description: "Unique identifier for each message"
+          - name: channel_name
+            description: "Name of the Telegram channel"
+          - name: message_date
+            description: "Date and time when the message was posted"
+          - name: message_text
+            description: "Text content of the message"
+          - name: json_data
+            description: "JSON data containing additional message details"
+          - name: has_media
+            description: "Indicates if the message contains media (true/false)"

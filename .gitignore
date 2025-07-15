@@ -6,3 +6,4 @@
 __pycache__/
 db.cpython*
 /logs
+**/__init__.py

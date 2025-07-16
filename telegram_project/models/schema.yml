@@ -25,7 +25,15 @@ models:
           - unique
       - name: channel_name
         description: "Name of the Telegram channel"
-    
+  - name: fct_image_detections
+    columns:
+      - name: message_id
+        tests: [not_null]
+      - name: detected_object_class
+        tests: [not_null]
+      - name: confidence_score
+        tests:
+          - not_null
 sources:
   - name: raw                # source schema or database name
     tables:
@@ -44,3 +52,5 @@ sources:
             description: "JSON data containing additional message details"
           - name: has_media
             description: "Indicates if the message contains media (true/false)"
+      - name: yolo_detections
+        description: "Object detection results using YOLOv8"

@@ -1,6 +1,13 @@
 {{ config(materialized='table') }}
 
-SELECT DISTINCT
-    Channel,
-    md5(Channel) AS channel_id
-FROM {{ ref('stg_telegram_messages') }}
+SELECT 
+    t."Channel", 
+    AVG(y."confidence_score") AS avg_confidence
+FROM 
+    {{ ref('stg_telegram_messages') }}  t
+JOIN 
+    {{ ref('stg_yolo_detections') }} y 
+ON 
+    t."Message_Id" = y."Message_Id"
+GROUP BY 
+    t."Channel"

@@ -9,3 +9,10 @@ uvicorn
 dagster
 dagster-webserver
 flake8
+dbt
+ultralytics
+pandas
+numpy
+requests
+sqlalchemy
+psycopg2-binary
